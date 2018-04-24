@@ -15,4 +15,4 @@ $time_string .= strlen($minutes) > 0 ? $minutes . " minutes and " : "";
 $time_string .= $seconds . " seconds";
 
 echo "Collatz.py running since: " . $time_string;
-echo '<pre>'.file_get_contents('/var/www/html/logs.txt').'</pre>';
+echo '<pre>'.file_get_contents('path/to/logs.txt').'</pre>';
