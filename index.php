@@ -1,5 +1,7 @@
 <?php
-$time = shell_exec('ps -p {PID} -o etime=');
+$pid = shell_exec("ps -eo pid,command | grep 'collatz.py' | grep -v grep | awk '{print $1}'");
+$pid = trim($pid);
+$time = shell_exec("ps -p $pid -o etime=");
 preg_match("/(?>([0-9])+-)?([0-9]{2})?\:([0-9]{2})\:([0-9]{2})$/", $time, $matches);
 $days = $matches[1];
 $hours = $matches[2];
@@ -13,4 +15,4 @@ $time_string .= strlen($minutes) > 0 ? $minutes . " minutes and " : "";
 $time_string .= $seconds . " seconds";
 
 echo "Collatz.py running since: " . $time_string;
-echo '<pre>'.file_get_contents('path/to/logs.txt').'</pre>';
+echo '<pre>'.file_get_contents('/var/www/html/logs.txt').'</pre>';
